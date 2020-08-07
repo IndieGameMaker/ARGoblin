@@ -26,13 +26,16 @@ public class GoblinCtrl : MonoBehaviour
         //             - new Vector3(tr.position.x, 0, tr.position.z);
 
         //방향벡터를 산출 (타이거좌표 - 고블린좌표)
+        // Vector3 a = tigerTr.TransformVector(tigerTr.position);
+        // Vector3 b = tr.TransformVector(tr.position);
+        // Vector3 lookDir = a - b;
         Vector3 lookDir = tigerTr.position - tr.position;
 
         //방향벡터의 각도(Quaternion)
         Quaternion rot = Quaternion.LookRotation(lookDir);
 
         //Slerp 보간 회전
-        tr.localRotation = Quaternion.Slerp(tr.localRotation, rot, Time.deltaTime * 5.0f);
+        tr.localRotation = Quaternion.Slerp(tr.localRotation, rot, Time.deltaTime * 10.0f);
         //이동  
         //tr.Translate(Vector3.forward * Time.deltaTime * 5.0f);
     }
