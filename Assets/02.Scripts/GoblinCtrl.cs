@@ -17,6 +17,7 @@ public class GoblinCtrl : MonoBehaviour
         {
             tigerTr = tigerObj.GetComponent<Transform>();
         }
+        anim = GetComponent<Animator>();
     }
 
     void LateUpdate()
