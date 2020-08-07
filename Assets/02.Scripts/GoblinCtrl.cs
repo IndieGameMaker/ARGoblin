@@ -19,9 +19,17 @@ public class GoblinCtrl : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        //방향벡터를 산출 (타이거좌표 - 고블린좌표)
+        Vector3 lookDir = tigerTr.position - tr.position;
+
+        //방향벡터의 각도(Quaternion)
+        Quaternion rot = Quaternion.LookRotation(lookDir);
+
+        //Slerp 보간 회전
+        tr.localRotation = Quaternion.Slerp(tr.localRotation, rot, Time.deltaTime * 3.0f);
+        //이동
+        //tr.Translate(Vector3.forward * Time.deltaTime * 5.0f);
     }
 }
