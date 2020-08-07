@@ -21,6 +21,9 @@ public class GoblinCtrl : MonoBehaviour
 
     void LateUpdate()
     {
+        // Vector3 dir = new Vector3(tigerTr.position.x, 0, tigerTr.position.z) 
+        //             - new Vector3(tr.position.x, 0, tr.position.z);
+
         //방향벡터를 산출 (타이거좌표 - 고블린좌표)
         Vector3 lookDir = tigerTr.position - tr.position;
 
@@ -28,8 +31,24 @@ public class GoblinCtrl : MonoBehaviour
         Quaternion rot = Quaternion.LookRotation(lookDir);
 
         //Slerp 보간 회전
-        tr.localRotation = Quaternion.Slerp(tr.localRotation, rot, Time.deltaTime * 3.0f);
-        //이동
+        tr.localRotation = Quaternion.Slerp(tr.localRotation, rot, Time.deltaTime * 5.0f);
+        //이동  
         //tr.Translate(Vector3.forward * Time.deltaTime * 5.0f);
+    }
+
+    void OnTriggerEnter(Collider coll)
+    {
+        if (coll.CompareTag("TIGER"))
+        {
+            anim.SetBool("isAttack", true);
+        }
+    }
+
+    void OnTriggerExit(Collider coll)
+    {
+        if (coll.CompareTag("TIGER"))
+        {
+            anim.SetBool("isAttack", false);
+        }        
     }
 }
