@@ -11,7 +11,12 @@ public class GoblinCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        tr = GetComponent<Transform>();
+        GameObject tigerObj = GameObject.FindGameObjectWithTag("TIGER");
+        if (tigerObj != null)
+        {
+            tigerTr = tigerObj.GetComponent<Transform>();
+        }
     }
 
     // Update is called once per frame
